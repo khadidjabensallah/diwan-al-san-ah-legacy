@@ -8,6 +8,7 @@ import ExplorePage from "./pages/ExplorePage";
 import CraftDetailPage from "./pages/CraftDetailPage";
 import MarketplacePage from "./pages/MarketplacePage";
 import ResearchersPage from "./pages/ResearchersPage";
+import TcodesPage from "./pages/TcodesPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/craft/:id" element={<CraftDetailPage />} />
           <Route path="/marketplace" element={<MarketplacePage />} />
           <Route path="/researchers" element={<ResearchersPage />} />
+          <Route path="/tcodes" element={<TcodesPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

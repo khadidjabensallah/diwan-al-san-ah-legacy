@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, Search, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoImage from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,6 +14,7 @@ const Header = () => {
     { href: "/explore", label: "استكشف الحرف" },
     { href: "/marketplace", label: "سوق الحرفيين" },
     { href: "/researchers", label: "للباحثين" },
+    { href: "/tcodes", label: "أكواد التصنيف" },
   ];
 
   const isActive = (href: string) => location.pathname === href;
@@ -23,8 +25,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-display text-xl font-bold transition-transform group-hover:scale-105">
-              د
+            <div className="w-[3.25rem] h-[3.25rem] rounded-xl flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
+              <img src={logoImage} alt="ديوان الصنعة logo" className="w-full h-full object-contain" />
             </div>
             <div className="hidden sm:block">
               <h1 className="font-display text-xl font-bold text-foreground">ديوان الصنعة</h1>

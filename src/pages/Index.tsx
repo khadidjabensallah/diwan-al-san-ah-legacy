@@ -9,41 +9,7 @@ import craftPottery from "@/assets/craft-pottery.jpg";
 import craftWeaving from "@/assets/craft-weaving.jpg";
 import craftCopper from "@/assets/craft-copper.jpg";
 import craftLeather from "@/assets/craft-leather.jpg";
-
-const craftsData = [
-  {
-    id: "pottery",
-    title: "الفخار والخزف",
-    description: "فن صناعة الفخار التقليدي الذي يعود لآلاف السنين، يتميز بزخارفه الهندسية والنباتية المستوحاة من التراث الأمازيغي.",
-    image: craftPottery,
-    region: "القبائل الكبرى",
-    category: "حرفة يدوية",
-  },
-  {
-    id: "weaving",
-    title: "النسيج والزرابي",
-    description: "فن النسيج التقليدي الجزائري الذي ينتج أجمل السجاد والزرابي بألوان وأنماط فريدة تحكي قصص القبائل.",
-    image: craftWeaving,
-    region: "غرداية",
-    category: "نسيج",
-  },
-  {
-    id: "copper",
-    title: "النحاسيات",
-    description: "حرفة صناعة الأواني والتحف النحاسية المزخرفة بنقوش إسلامية وأمازيغية دقيقة تعكس براعة الحرفيين.",
-    image: craftCopper,
-    region: "قسنطينة",
-    category: "معادن",
-  },
-  {
-    id: "leather",
-    title: "صناعة الجلود",
-    description: "فن دباغة الجلود وتحويلها إلى منتجات فاخرة كالحقائب والأحذية والوسائد المزخرفة بطرق تقليدية.",
-    image: craftLeather,
-    region: "تلمسان",
-    category: "جلود",
-  },
-];
+import { allCrafts } from "@/data/crafts";
 
 const featuredProducts = [
   {
@@ -100,7 +66,7 @@ const Index = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-l from-heritage-brown/95 via-heritage-brown/70 to-heritage-brown/40" />
         </div>
-        
+
         <div className="container mx-auto relative z-10">
           <div className="max-w-2xl">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 text-heritage-cream text-sm mb-6 animate-fade-up">
@@ -234,9 +200,9 @@ const Index = () => {
               </Button>
             </Link>
           </div>
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {craftsData.map((craft, index) => (
+            {allCrafts.slice(0, 4).map((craft, index) => (
               <CraftCard
                 key={craft.id}
                 {...craft}
@@ -265,7 +231,7 @@ const Index = () => {
               </Button>
             </Link>
           </div>
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
               <ProductCard key={product.id} {...product} />

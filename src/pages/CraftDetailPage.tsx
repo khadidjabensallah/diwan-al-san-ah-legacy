@@ -9,36 +9,9 @@ import craftWeaving from "@/assets/craft-weaving.jpg";
 import craftCopper from "@/assets/craft-copper.jpg";
 import craftLeather from "@/assets/craft-leather.jpg";
 
-// Mock data for demonstration
-const craftDetails = {
-  pottery: {
-    title: "الفخار والخزف",
-    description: "فن صناعة الفخار التقليدي الذي يعود لآلاف السنين، يتميز بزخارفه الهندسية والنباتية المستوحاة من التراث الأمازيغي. تعتبر هذه الحرفة من أقدم الصناعات التقليدية في الجزائر.",
-    image: craftPottery,
-    region: "القبائل الكبرى",
-    category: "حرفة يدوية",
-    history: `تعود صناعة الفخار في الجزائر إلى آلاف السنين، حيث عُثر على قطع فخارية يعود تاريخها إلى العصر الحجري الحديث. تطورت هذه الحرفة عبر العصور لتصبح جزءاً أساسياً من الثقافة الجزائرية.
+import { allCrafts } from "@/data/crafts";
 
-في منطقة القبائل الكبرى، اشتهرت النساء بإنتاج أواني فخارية مميزة تحمل زخارف هندسية ورموز أمازيغية تقليدية. كل رمز يحمل معنى خاصاً ويروي قصة من قصص الأجداد.
-
-تتميز الأواني الفخارية الجزائرية بألوانها الترابية الطبيعية وزخارفها الفريدة التي تجمع بين الجمال والوظيفية.`,
-    tools: [
-      "الطين الطبيعي من المنطقة",
-      "أدوات التشكيل الخشبية والمعدنية",
-      "الفرن التقليدي (الكوشة)",
-      "الأصباغ الطبيعية للتزيين",
-      "أدوات النقش والحفر",
-    ],
-    regions: [
-      { name: "تيزي وزو", specialty: "الفخار المنزلي" },
-      { name: "بجاية", specialty: "الأواني الزخرفية" },
-      { name: "مسيلة", specialty: "الفخار الريفي" },
-    ],
-    artisans: 45,
-    products: 120,
-  },
-};
-
+// Mock products for demonstration
 const relatedProducts = [
   {
     id: "1",
@@ -76,7 +49,7 @@ const relatedProducts = [
 
 const CraftDetailPage = () => {
   const { id } = useParams();
-  const craft = craftDetails.pottery; // Using mock data
+  const craft = allCrafts.find(c => c.id === id) || allCrafts[0];
 
   const galleryImages = [craftPottery, craftWeaving, craftCopper, craftLeather];
 
@@ -90,13 +63,18 @@ const CraftDetailPage = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-heritage-brown via-heritage-brown/50 to-transparent" />
-        
+
         <div className="absolute inset-0 flex items-end">
           <div className="container mx-auto pb-12">
             <div className="max-w-3xl">
-              <span className="inline-block px-4 py-2 bg-primary text-primary-foreground rounded-full text-sm mb-4">
-                {craft.category}
-              </span>
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                <span className="px-4 py-1.5 bg-primary text-primary-foreground rounded-full text-sm font-bold shadow-lg">
+                  {craft.category}
+                </span>
+                <span className="px-3 py-1 bg-heritage-cream text-heritage-brown rounded-lg text-xs font-mono font-bold border border-heritage-gold shadow-md">
+                  CITP Code: {craft.iscoCode}
+                </span>
+              </div>
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-heritage-cream mb-4">
                 {craft.title}
               </h1>
@@ -107,7 +85,7 @@ const CraftDetailPage = () => {
                 </span>
                 <span className="flex items-center gap-2">
                   <Users className="w-5 h-5" />
-                  {craft.artisans} حرفي
+                  {craft.artisans || 0} حرفي
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
@@ -220,9 +198,8 @@ const CraftDetailPage = () => {
                     {galleryImages.map((img, index) => (
                       <div
                         key={index}
-                        className={`rounded-xl overflow-hidden ${
-                          index === 0 ? "col-span-2 aspect-video" : "aspect-square"
-                        }`}
+                        className={`rounded-xl overflow-hidden ${index === 0 ? "col-span-2 aspect-video" : "aspect-square"
+                          }`}
                       >
                         <img
                           src={img}
